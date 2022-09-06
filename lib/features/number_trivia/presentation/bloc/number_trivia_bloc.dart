@@ -51,11 +51,7 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   void _eitherLoadedOrErrorState(Either<Failure, NumberTrivia> failureOrTrivia, Emitter<NumberTriviaState> emit) {
     failureOrTrivia.fold(
       (failure) => emit(Error(message: _mapFailureToMessage(failure))),
-      (trivia) {
-        print(trivia.number);
-        print(trivia.text);
-        add(TriviaLoaded(trivia));
-      },
+      (trivia) => add(TriviaLoaded(trivia)),
     );
   }
 
